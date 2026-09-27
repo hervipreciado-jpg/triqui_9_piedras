@@ -1,0 +1,19 @@
+# Dependencias
+node_modules/
+
+# App Android: archivos generados (se regeneran con app-movil/build-apk.bat)
+app-movil/www/
+app-movil/android/app/src/main/assets/public/
+app-movil/android/app/src/main/assets/capacitor.config.json
+app-movil/android/capacitor-cordova-android-plugins/
+
+# Compilados y paquetes
+*.apk
+*.aab
+*.zip
+
+# Sistema / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/

@@ -1,0 +1,24 @@
+{
+  "name": "Triqui 9 Piedras",
+  "short_name": "Triqui 9",
+  "description": "Juego de mesa tradicional colombiano y Molino con diagonales, modos 1P vs CPU y 2P local.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a1f",
+  "theme_color": "#00f0ff",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

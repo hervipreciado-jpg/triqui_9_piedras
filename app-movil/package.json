@@ -1,0 +1,18 @@
+{
+  "name": "he-dreamer-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "copy-web": "node copy-web.js",
+    "sync": "node copy-web.js && npx cap sync android",
+    "build-apk": "node copy-web.js && npx cap sync android && cd android && gradlew.bat assembleDebug"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^3.0.5",
+    "@capacitor/cli": "^8.5.2"
+  }
+}

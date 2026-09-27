@@ -1,173 +1,429 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Triqui de 9 Piedras</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>He Dreamer - Portafolio</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-
 <body>
-    <div class="glass-bg"></div>
-    
-    <main class="game-container">
-        <header class="game-header">
-            <h1>Triqui de 9 Piedras</h1>
-            <p class="subtitle">Nine Men's Morris con Diagonales</p>
-        </header>
 
-        <div class="game-layout">
-            <!-- Jugador 1 -->
-            <section class="player-panel" id="player1-panel">
-                <div class="player-indicator-card">
-                    <div class="player-avatar p1-avatar"></div>
-                    <h2>Jugador 1</h2>
-                    <span class="badge p1-badge">Piedras Azules</span>
-                </div>
-                <div class="player-stats">
-                    <div class="stat-box">
-                        <span class="stat-label">Por Colocar</span>
-                        <span class="stat-val" id="p1-to-place">9</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">En Tablero</span>
-                        <span class="stat-val" id="p1-on-board">0</span>
-                    </div>
-                    <div class="captured-container">
-                        <span class="stat-label">Capturadas (Rival)</span>
-                        <div class="captured-stones" id="p1-captured-stones"></div>
-                    </div>
-                </div>
-            </section>
+  <div class="dashboard">
 
-            <!-- Tablero -->
-            <section class="board-area">
-                <div class="status-banner" id="status-message">
-                    Fase de Colocación: Jugador 1 coloca una piedra.
-                </div>
-                
-                <div class="board-wrapper">
-                    <svg viewBox="0 0 600 600" class="board-svg" id="board-svg">
-                        <defs>
-                            <radialGradient id="p1-grad" cx="35%" cy="35%" r="70%">
-                                <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="100%" stop-color="#00f0ff" />
-                            </radialGradient>
-                            <radialGradient id="p2-grad" cx="35%" cy="35%" r="70%">
-                                <stop offset="0%" stop-color="#ffffff" />
-                                <stop offset="100%" stop-color="#ff0088" />
-                            </radialGradient>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-icon">🌟</span>
+        <h2>HE DREAMER</h2>
+      </div>
+      
+      <nav>
+        <ul id="menu">
+          <li class="active" data-section="perfil"><a href="#"><i class="fas fa-user"></i> PERFIL</a></li>
+          <li data-section="tecnologias"><a href="#"><i class="fas fa-code"></i> TECNOLOGÍAS</a></li>
+          <li data-section="libros"><a href="#"><i class="fas fa-book"></i> LIBROS</a></li>
+          <li data-section="juegos"><a href="#"><i class="fas fa-gamepad"></i> JUEGOS</a></li>
+          <li data-section="proyectos"><a href="#"><i class="fas fa-project-diagram"></i> PROYECTOS</a></li>
+          <li data-section="habilidades"><a href="#"><i class="fas fa-chart-bar"></i> HABILIDADES</a></li>
+          <li data-section="contacto"><a href="#"><i class="fas fa-envelope"></i> CONTACTO</a></li>
+          <li data-section="blog"><a href="#"><i class="fas fa-blog"></i> BLOG</a></li>
+        </ul>
+      </nav>
+    </aside>
 
-                            <filter id="glow-board" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="4" result="blur"/>
-                                <feMerge>
-                                    <feMergeNode in="blur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
+    <!-- Contenido Principal -->
+    <main class="main-content">
 
-                            <filter id="glow-p1" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="6" result="blur"/>
-                                <feMerge>
-                                    <feMergeNode in="blur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                            <filter id="glow-p2" x="-50%" y="-50%" width="200%" height="200%">
-                                <feGaussianBlur stdDeviation="6" result="blur"/>
-                                <feMerge>
-                                    <feMergeNode in="blur"/>
-                                    <feMergeNode in="SourceGraphic"/>
-                                </feMerge>
-                            </filter>
-                        </defs>
+      <header class="top-header">
+        <h1 id="page-title">PERFIL</h1>
+        <div class="nav-buttons">
+          <button type="button" class="nav-btn" id="btn-atras" title="Atrás" disabled>
+            <i class="fas fa-arrow-left"></i> <span>Atrás</span>
+          </button>
+          <button type="button" class="nav-btn" id="btn-inicio" title="Inicio">
+            <i class="fas fa-home"></i> <span>Inicio</span>
+          </button>
+        </div>
+      </header>
 
-                        <g class="board-lines" filter="url(#glow-board)">
-                            <line x1="40" y1="40" x2="560" y2="40"/>
-                            <line x1="560" y1="40" x2="560" y2="560"/>
-                            <line x1="560" y1="560" x2="40" y2="560"/>
-                            <line x1="40" y1="560" x2="40" y2="40"/>
+      <!-- ==================== SECCIONES ==================== -->
 
-                            <line x1="130" y1="130" x2="470" y2="130"/>
-                            <line x1="470" y1="130" x2="470" y2="470"/>
-                            <line x1="470" y1="470" x2="130" y2="470"/>
-                            <line x1="130" y1="470" x2="130" y2="130"/>
+      <!-- Perfil -->
+      <section id="perfil" class="content-section active">
+        <h2>Bienvenido a mi Portafolio</h2>
+        <p class="profile-name"><strong>Segundo Hermes Landazuri Preciado</strong></p>
+        <p>Soy un desarrollador apasionado por la programación, los videojuegos y la creación de soluciones tecnológicas.</p>
+        <p>Técnico en desarrollo de software con conocimientos en programación y manejo de base de datos con Python, creación de páginas web con HTML, CSS, JavaScript y aspectos básicos de la asistencia técnica.</p>
+      
+        <div class="cursos-section">
+          <h2><i class="fas fa-graduation-cap"></i> Mis Certificados y Cursos</h2>
+          <div class="pdfs">
+            
+            <div class="pdf">
+              <h3>Certificado de Inglés A2</h3>
+              <iframe src="cursos/certificado de ingles A2.pdf" title="Certificado de Inglés A2"></iframe>
+              <a href="cursos/certificado de ingles A2.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
 
-                            <line x1="220" y1="220" x2="380" y2="220"/>
-                            <line x1="380" y1="220" x2="380" y2="380"/>
-                            <line x1="380" y1="380" x2="220" y2="380"/>
-                            <line x1="220" y1="380" x2="220" y2="220"/>
+            <div class="pdf">
+              <h3>Aspectos Básicos de Asistencia Técnica</h3>
+              <iframe src="cursos/aspectos basicos para la asistencia tecnica.pdf" title="Aspectos básicos para la asistencia técnica"></iframe>
+              <a href="cursos/aspectos basicos para la asistencia tecnica.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
 
-                            <line x1="300" y1="40" x2="300" y2="220"/>
-                            <line x1="300" y1="380" x2="300" y2="560"/>
-                            <line x1="40" y1="300" x2="220" y2="300"/>
-                            <line x1="380" y1="300" x2="560" y2="300"/>
+            <div class="pdf">
+              <h3>Interactivity with JavaScript</h3>
+              <iframe src="cursos/interactivy with JavaScript.pdf" title="Interactivity with JavaScript"></iframe>
+              <a href="cursos/interactivy with JavaScript.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
 
-                            <line x1="40" y1="40" x2="220" y2="220"/>
-                            <line x1="560" y1="40" x2="380" y2="220"/>
-                            <line x1="40" y1="560" x2="220" y2="380"/>
-                            <line x1="560" y1="560" x2="380" y2="380"/>
-                        </g>
+            <div class="pdf">
+              <h3>Introducción a Python</h3>
+              <iframe src="cursos/introducion a la programacion con python.pdf" title="Introducción a la programación con Python"></iframe>
+              <a href="cursos/introducion a la programacion con python.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
 
-                        <g id="board-nodes"></g>
-                    </svg>
-                </div>
-            </section>
+            <div class="pdf">
+              <h3>Manejo de Bases de Datos con Python</h3>
+              <iframe src="cursos/manejo de base de datos con python.pdf" title="Manejo de base de datos con Python"></iframe>
+              <a href="cursos/manejo de base de datos con python.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
 
-            <!-- Jugador 2 -->
-            <section class="player-panel" id="player2-panel">
-                <div class="player-indicator-card">
-                    <div class="player-avatar p2-avatar"></div>
-                    <h2>Jugador 2</h2>
-                    <span class="badge p2-badge">Piedras Rojas</span>
-                </div>
-                <div class="player-stats">
-                    <div class="stat-box">
-                        <span class="stat-label">Por Colocar</span>
-                        <span class="stat-val" id="p2-to-place">9</span>
-                    </div>
-                    <div class="stat-box">
-                        <span class="stat-label">En Tablero</span>
-                        <span class="stat-val" id="p2-on-board">0</span>
-                    </div>
-                    <div class="captured-container">
-                        <span class="stat-label">Capturadas (Rival)</span>
-                        <div class="captured-stones" id="p2-captured-stones"></div>
-                    </div>
-                </div>
-            </section>
+            <div class="pdf">
+              <h3>POO con Python</h3>
+              <iframe src="cursos/programacion orientada a objetos con python.pdf" title="Programación orientada a objetos con Python"></iframe>
+              <a href="cursos/programacion orientada a objetos con python.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
+
+            <div class="pdf">
+              <h3>OOP Concepts</h3>
+              <iframe src="cursos/object-Oriented Programming concepts.pdf" title="Object-Oriented Programming concepts"></iframe>
+              <a href="cursos/object-Oriented Programming concepts.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
+
+            <div class="pdf">
+              <h3>Programming Fundamentals in Kotlin</h3>
+              <iframe src="cursos/programming fundamentals in kotlin.pdf" title="Programming fundamentals in Kotlin"></iframe>
+              <a href="cursos/programming fundamentals in kotlin.pdf" target="_blank" class="pdf-link">
+                <i class="fas fa-external-link-alt"></i> Ver PDF completo
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Tecnologías -->
+      <section id="tecnologias" class="content-section">
+        <h2>Tecnologías</h2>
+
+        <div class="tech-tags">
+          <span class="tech"><i class="fab fa-python"></i> Python</span>
+          <ul class="checklist">
+            <li>
+              <input type="checkbox" id="py-vars" checked>
+              <label for="py-vars">Variables</label>
+            </li>
+            <li>
+              <input type="checkbox" id="py-cond" checked>
+              <label for="py-cond">Condicionales</label>
+            </li>
+            <li>
+              <input type="checkbox" id="py-ciclos" checked>
+              <label for="py-ciclos">Ciclos</label>
+            </li>
+            <li>
+              <input type="checkbox" id="py-func">
+              <label for="py-func">Funciones</label>
+            </li>
+            <li>
+              <input type="checkbox" id="py-list">
+              <label for="py-list">Array / Listas</label>
+            </li>
+            <li>
+              <input type="checkbox" id="py-obj">
+              <label for="py-obj">Objetos</label>
+            </li>
+            <li>
+              <input type="checkbox" id="py-algo">
+              <label for="py-algo">Algoritmos básicos</label>
+            </li>
+          </ul>
+
+          <span class="tech"><i class="fab fa-java"></i> Java</span>
+          <ul class="checklist">
+            <li>
+              <input type="checkbox" id="java-vars" checked>
+              <label for="java-vars">Variables</label>
+            </li>
+            <li>
+              <input type="checkbox" id="java-cond">
+              <label for="java-cond">Condicionales</label>
+            </li>
+            <li>
+              <input type="checkbox" id="java-ciclos">
+              <label for="java-ciclos">Ciclos</label>
+            </li>
+            <li>
+              <input type="checkbox" id="java-func">
+              <label for="java-func">Funciones</label>
+            </li>
+            <li>
+              <input type="checkbox" id="java-list">
+              <label for="java-list">Array / Listas</label>
+            </li>
+            <li>
+              <input type="checkbox" id="java-obj">
+              <label for="java-obj">Objetos</label>
+            </li>
+            <li>
+              <input type="checkbox" id="java-algo">
+              <label for="java-algo">Algoritmos básicos</label>
+            </li>
+          </ul>
+
+          <span class="tech"><i class="fas fa-database"></i> SQL</span>
+          <ul class="checklist">
+            <li class="checklist-header"><strong>MANIPULACIÓN DE DATOS</strong></li>
+            <li>
+              <input type="checkbox" id="sql-select">
+              <label for="sql-select">Consultas básicas SELECT, WHERE, ORDER BY, LIMIT/TOP</label>
+            </li>
+            <li>
+              <input type="checkbox" id="sql-ops">
+              <label for="sql-ops">Operadores y comodines LIKE, IN, BETWEEN, AND, OR y NOT</label>
+            </li>
+            <li>
+              <input type="checkbox" id="sql-mod">
+              <label for="sql-mod">Modificación de datos INSERT, UPDATE, DELETE</label>
+            </li>
+            <li class="checklist-header"><strong>RELACIONES Y COMBINACIONES</strong></li>
+            <li>
+              <input type="checkbox" id="sql-inner">
+              <label for="sql-inner">INNER JOIN</label>
+            </li>
+            <li>
+              <input type="checkbox" id="sql-left">
+              <label for="sql-left">LEFT JOIN</label>
+            </li>
+            <li>
+              <input type="checkbox" id="sql-right">
+              <label for="sql-right">RIGHT JOIN</label>
+            </li>
+          </ul>
+
+          <span class="tech"><i class="fab fa-react"></i> React</span>
+          <ul class="checklist">
+            <li>
+              <input type="checkbox" id="react-dash">
+              <label for="react-dash">DASHBOARD</label>
+            </li>
+            <li>
+              <input type="checkbox" id="react-crud">
+              <label for="react-crud">CRUD</label>
+            </li>
+            <li>
+              <input type="checkbox" id="react-login">
+              <label for="react-login">LOGIN</label>
+            </li>
+            <li>
+              <input type="checkbox" id="react-forms">
+              <label for="react-forms">FORMULARIOS</label>
+            </li>
+            <li>
+              <input type="checkbox" id="react-apis">
+              <label for="react-apis">CONSUMIR APIS</label>
+            </li>
+            <li>
+              <input type="checkbox" id="react-resp">
+              <label for="react-resp">DISEÑO RESPONSIVE</label>
+            </li>
+          </ul>
+
+          <span class="tech"><i class="fab fa-unity"></i> Unity</span>
+          <ul class="checklist">
+            <li class="checklist-header"><strong>INTERFAZ DE UNITY</strong></li>
+            <li>
+              <input type="checkbox" id="unity-scene">
+              <label for="unity-scene">Scene</label>
+            </li>
+            <li>
+              <input type="checkbox" id="unity-game">
+              <label for="unity-game">Game</label>
+            </li>
+            <li>
+              <input type="checkbox" id="unity-hier">
+              <label for="unity-hier">Hierarchy</label>
+            </li>
+            <li>
+              <input type="checkbox" id="unity-insp">
+              <label for="unity-insp">Inspector</label>
+            </li>
+            <li>
+              <input type="checkbox" id="unity-proj">
+              <label for="unity-proj">Project</label>
+            </li>
+            <li class="checklist-header"><strong>MOVIMIENTO</strong></li>
+            <li>
+              <input type="checkbox" id="unity-mov">
+              <label for="unity-mov">Movimiento</label>
+            </li>
+            <li>
+              <input type="checkbox" id="unity-salto">
+              <label for="unity-salto">Salto</label>
+            </li>
+            <li>
+              <input type="checkbox" id="unity-cam">
+              <label for="unity-cam">Cámara</label>
+            </li>
+          </ul>
+
+          <span class="tech"><i class="fas fa-cube"></i> Blender</span>
+        </div>
+      </section>
+
+      <!-- Libros -->
+      <section id="libros" class="content-section">
+        <h2>Libros Escritos</h2>
+        <div class="tags">
+          <span class="tag"><i class="fas fa-feather-alt"></i> Señales del Universo</span>
+          <span class="tag"><i class="fas fa-feather-alt"></i> Lo que pasa en las empresas</span>
+          <span class="tag"><i class="fas fa-feather-alt"></i> El Soñador</span>
         </div>
 
-        <footer class="game-footer">
-            <button class="btn btn-reset" id="btn-reset">Reiniciar Juego</button>
-        </footer>
-</main>
+        <h2 style="margin-top: 2rem;">Libros Leídos</h2>
+        <ul class="checklist">
+          <li>
+            <input type="checkbox" id="libro-ahora" checked>
+            <label for="libro-ahora">El poder del ahora</label>
+          </li>
+          <li>
+            <input type="checkbox" id="libro-padre" checked>
+            <label for="libro-padre">Padre rico, padre pobre</label>
+          </li>
+          <li>
+            <input type="checkbox" id="libro-queso">
+            <label for="libro-queso">¿Quién se ha llevado mi queso?</label>
+          </li>
+          <li>
+            <input type="checkbox" id="libro-suenos">
+            <label for="libro-suenos">Los sueños, sueños son o no</label>
+          </li>
+          <li>
+            <input type="checkbox" id="libro-piense">
+            <label for="libro-piense">Piense y hágase rico</label>
+          </li>
+          <li>
+            <input type="checkbox" id="libro-iliada">
+            <label for="libro-iliada">La Ilíada</label>
+          </li>
+        </ul>
+      </section>
 
-    <div class="modal-overlay" id="game-over-modal">
-        <div class="modal-content">
-            <h2 id="winner-title">¡Victoria!</h2>
-            <p id="winner-message"></p>
-            <button class="btn btn-primary" id="btn-modal-restart">Jugar de Nuevo</button>
+      <!-- Juegos -->
+      <section id="juegos" class="content-section">
+        <h2>Juegos Desarrollados</h2>
+        
+        <div class="game-card">
+          <img src="img/enemigos.jpg" alt="The Immortal">
+          <div>
+            <h3>The Immortal</h3>
+            <p>Un RPG épico con mecánicas innovadoras y combate estratégico.</p>
+          </div>
         </div>
-    </div>
 
-    <div class="modal-overlay" id="rules-modal" style="display: none;">
-        <div class="modal-content" style="max-width: 500px; text-align: left;">
-            <h2>Reglas de Triqui 9 Piedras</h2>
-            <hr style="border: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
-            <ol style="padding-left: 20px; line-height: 1.6;">
-                <li><b>Colocación:</b> Coloquen por turnos sus 9 piedras en el tablero.</li>
-                <li><b>Movimiento:</b> Muevan una piedra por turno a un punto vecino conectado.</li>
-                <li><b>Triqui:</b> Alinea 3 piedras para eliminar una del rival.</li>
-                <li><b>Victoria:</b> Reduce al rival a 2 piedras o déjalo sin movimientos válidos.</li>
-            </ol>
-            <button class="btn btn-primary" id="btn-close-rules" style="margin-top: 20px; width: 100%;">Entendido</button>
+        <div class="game-card">
+          <img src="img/img_triqui.png" alt="triqui9piedras">
+          <div>
+            <h3>triqui9piedras</h3>
+            <p><b>Un juego 2D de mecánicas de estrategia y dinámicas interesantes para jugar en casa o con amigos.</b></p>
+            <a href="TRIQUI9_PIEDRAS/triqui_game/index.html" class="btn-play-game">
+              <i class="fas fa-play"></i> Jugar Triqui 9 Piedras
+            </a>
+          </div>
         </div>
-    </div>
 
-    <script src="game.js"></script>
+        <h2 style="margin-top: 2.5rem;"><i class="fas fa-paint-brush"></i> Personajes y Arte</h2>
+        <div class="character-gallery">
+          <div class="char-card">
+            <img src="img/espiritud errante.png" alt="Espíritu Errante">
+            <p>Espíritu Errante</p>
+          </div>
+          <div class="char-card">
+            <img src="img/golpeador_pesado.png" alt="Golpeador Pesado">
+            <p>Golpeador Pesado</p>
+          </div>
+          <div class="char-card">
+            <img src="img/tounao.png" alt="Tounao">
+            <p>Tounao</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Proyectos -->
+      <section id="proyectos" class="content-section">
+        <h2>Mis Proyectos</h2>
+        <p>Próximamente más proyectos interactivos, aplicaciones web y demos...</p>
+      </section>
+
+      <!-- Habilidades -->
+      <section id="habilidades" class="content-section">
+        <h2>Habilidades</h2>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3><i class="fas fa-laptop-code"></i> Frontend</h3>
+            <p>HTML5 semántico, diseño responsive con CSS3, Flexbox, Grid y JavaScript interactivo.</p>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-database"></i> Bases de Datos</h3>
+            <p>Consultas SQL, manipulación de datos (CRUD), relaciones INNER, LEFT y RIGHT JOIN.</p>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-terminal"></i> Backend y Scripting</h3>
+            <p>Fundamentos de programación, POO y lógica de algoritmos con Python y Kotlin.</p>
+          </div>
+          <div class="skill-card">
+            <h3><i class="fas fa-tools"></i> Soporte y Asistencia</h3>
+            <p>Aspectos básicos para la asistencia técnica, resolución de fallos y soporte de sistemas.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section id="contacto" class="content-section">
+        <h2>Contacto</h2>
+        <div class="contact-info">
+          <p><i class="fas fa-envelope"></i> <strong>Email:</strong> Hervipreciado@gmail.com</p>
+          <p><i class="fas fa-phone"></i> <strong>Teléfono:</strong> 3138611720</p>
+          <p><i class="fas fa-map-marker-alt"></i> <strong>Ciudad:</strong> Bogotá, Colombia</p>
+        </div>
+      </section>
+
+      <!-- Blog -->
+      <section id="blog" class="content-section">
+        <h2>Blog</h2>
+        <p>Próximamente artículos sobre programación, notas técnicas y reflexiones sobre desarrollo de videojuegos y software.</p>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
