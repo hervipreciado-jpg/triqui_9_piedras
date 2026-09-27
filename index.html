@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triqui de 9 Piedras</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="glass-bg"></div>
+    
+    <main class="game-container">
+        <header class="game-header">
+            <h1>Triqui de 9 Piedras</h1>
+            <p class="subtitle">Nine Men's Morris con Diagonales</p>
+        </header>
+
+        <div class="game-layout">
+            <!-- Jugador 1 -->
+            <section class="player-panel" id="player1-panel">
+                <div class="player-indicator-card">
+                    <div class="player-avatar p1-avatar"></div>
+                    <h2>Jugador 1</h2>
+                    <span class="badge p1-badge">Piedras Azules</span>
+                </div>
+                <div class="player-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Por Colocar</span>
+                        <span class="stat-val" id="p1-to-place">9</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">En Tablero</span>
+                        <span class="stat-val" id="p1-on-board">0</span>
+                    </div>
+                    <div class="captured-container">
+                        <span class="stat-label">Capturadas (Rival)</span>
+                        <div class="captured-stones" id="p1-captured-stones"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tablero -->
+            <section class="board-area">
+                <div class="status-banner" id="status-message">
+                    Fase de Colocación: Jugador 1 coloca una piedra.
+                </div>
+                
+                <div class="board-wrapper">
+                    <svg viewBox="0 0 600 600" class="board-svg" id="board-svg">
+                        <defs>
+                            <radialGradient id="p1-grad" cx="35%" cy="35%" r="70%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="100%" stop-color="#00f0ff" />
+                            </radialGradient>
+                            <radialGradient id="p2-grad" cx="35%" cy="35%" r="70%">
+                                <stop offset="0%" stop-color="#ffffff" />
+                                <stop offset="100%" stop-color="#ff0088" />
+                            </radialGradient>
+
+                            <filter id="glow-board" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="4" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+
+                            <filter id="glow-p1" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="6" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                            <filter id="glow-p2" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur stdDeviation="6" result="blur"/>
+                                <feMerge>
+                                    <feMergeNode in="blur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <g class="board-lines" filter="url(#glow-board)">
+                            <line x1="40" y1="40" x2="560" y2="40"/>
+                            <line x1="560" y1="40" x2="560" y2="560"/>
+                            <line x1="560" y1="560" x2="40" y2="560"/>
+                            <line x1="40" y1="560" x2="40" y2="40"/>
+
+                            <line x1="130" y1="130" x2="470" y2="130"/>
+                            <line x1="470" y1="130" x2="470" y2="470"/>
+                            <line x1="470" y1="470" x2="130" y2="470"/>
+                            <line x1="130" y1="470" x2="130" y2="130"/>
+
+                            <line x1="220" y1="220" x2="380" y2="220"/>
+                            <line x1="380" y1="220" x2="380" y2="380"/>
+                            <line x1="380" y1="380" x2="220" y2="380"/>
+                            <line x1="220" y1="380" x2="220" y2="220"/>
+
+                            <line x1="300" y1="40" x2="300" y2="220"/>
+                            <line x1="300" y1="380" x2="300" y2="560"/>
+                            <line x1="40" y1="300" x2="220" y2="300"/>
+                            <line x1="380" y1="300" x2="560" y2="300"/>
+
+                            <line x1="40" y1="40" x2="220" y2="220"/>
+                            <line x1="560" y1="40" x2="380" y2="220"/>
+                            <line x1="40" y1="560" x2="220" y2="380"/>
+                            <line x1="560" y1="560" x2="380" y2="380"/>
+                        </g>
+
+                        <g id="board-nodes"></g>
+                    </svg>
+                </div>
+            </section>
+
+            <!-- Jugador 2 -->
+            <section class="player-panel" id="player2-panel">
+                <div class="player-indicator-card">
+                    <div class="player-avatar p2-avatar"></div>
+                    <h2>Jugador 2</h2>
+                    <span class="badge p2-badge">Piedras Rojas</span>
+                </div>
+                <div class="player-stats">
+                    <div class="stat-box">
+                        <span class="stat-label">Por Colocar</span>
+                        <span class="stat-val" id="p2-to-place">9</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">En Tablero</span>
+                        <span class="stat-val" id="p2-on-board">0</span>
+                    </div>
+                    <div class="captured-container">
+                        <span class="stat-label">Capturadas (Rival)</span>
+                        <div class="captured-stones" id="p2-captured-stones"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer class="game-footer">
+            <button class="btn btn-reset" id="btn-reset">Reiniciar Juego</button>
+        </footer>
+</main>
+
+    <div class="modal-overlay" id="game-over-modal">
+        <div class="modal-content">
+            <h2 id="winner-title">¡Victoria!</h2>
+            <p id="winner-message"></p>
+            <button class="btn btn-primary" id="btn-modal-restart">Jugar de Nuevo</button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="rules-modal" style="display: none;">
+        <div class="modal-content" style="max-width: 500px; text-align: left;">
+            <h2>Reglas de Triqui 9 Piedras</h2>
+            <hr style="border: 1px solid rgba(255,255,255,0.1); margin: 15px 0;">
+            <ol style="padding-left: 20px; line-height: 1.6;">
+                <li><b>Colocación:</b> Coloquen por turnos sus 9 piedras en el tablero.</li>
+                <li><b>Movimiento:</b> Muevan una piedra por turno a un punto vecino conectado.</li>
+                <li><b>Triqui:</b> Alinea 3 piedras para eliminar una del rival.</li>
+                <li><b>Victoria:</b> Reduce al rival a 2 piedras o déjalo sin movimientos válidos.</li>
+            </ol>
+            <button class="btn btn-primary" id="btn-close-rules" style="margin-top: 20px; width: 100%;">Entendido</button>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
